@@ -23,6 +23,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { addData, deleteData, editData } from '../../actions'
 import Chart from 'chart.js/auto'
+import Xls from '../exportXls'
+import Pdf from '../exportPdf'
 import './index.scss'
 
 const useStyles = makeStyles((theme) => ({
@@ -360,6 +362,8 @@ const Home = () => {
                     </div>
                 ))}
             </div>
+            <Xls />
+            <Pdf />
         </Container>
     )
 }

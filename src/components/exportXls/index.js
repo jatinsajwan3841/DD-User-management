@@ -9,7 +9,11 @@ const ExcelColumn = ReactExport.ExcelFile.ExcelColumn
 const ExportXls = () => {
     const dataList = useSelector((state) => state.data)
     return (
-        <ExcelFile element={<button>ExportXls Data</button>}>
+        <ExcelFile
+            element={
+                <button style={{ marginRight: '10px' }}>Export to Xlsx</button>
+            }
+        >
             <ExcelSheet data={dataList} name="Data">
                 <ExcelColumn label="id" value="id" />
                 <ExcelColumn label="chart_label" value="chart_label" />

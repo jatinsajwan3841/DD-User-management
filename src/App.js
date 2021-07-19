@@ -15,7 +15,9 @@ const App = () => {
                 {routeGen}
                 <Route>
                     <button>
-                        <Link to="/">Go back to homepage</Link>
+                        <Link to="/DD-User-management/">
+                            Go back to homepage
+                        </Link>
                     </button>
                     <img
                         src="https://cdn.mos.cms.futurecdn.net/PuXipAW3AXUzUJ4uYyxPKC-1200-80.jpg"

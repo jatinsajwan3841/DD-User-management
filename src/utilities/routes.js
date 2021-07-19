@@ -6,19 +6,19 @@ const User = React.lazy(() => import('../components/user'))
 
 const routes = [
     {
-        path: '/',
+        path: '/DD-User-management/',
         exact: true,
         name: 'Home',
         component: Login,
     },
     {
-        path: '/admin',
+        path: '/DD-User-management/admin',
         exact: true,
         name: 'Admin',
         component: Admin,
     },
     {
-        path: '/user',
+        path: '/DD-User-management/user',
         exact: true,
         name: 'User',
         component: User,
