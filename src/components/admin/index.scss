@@ -1,0 +1,17 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .chart-holder {
+        margin: 20px;
+        width: min-content;
+        height: min-content;
+        min-width: 300px;
+        min-height: 300px;
+    }
+}
+
+.resizable {
+    resize: both;
+    overflow: auto;
+}
