@@ -2,8 +2,6 @@ import React from 'react'
 import Container from '@material-ui/core/Container'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
 import SendIcon from '@material-ui/icons/Send'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../actions'
@@ -27,7 +25,11 @@ const Login = () => {
                         isAdmin: users[findUser].isAdmin,
                     }),
                 )
-                setrdval(users[findUser].isAdmin ? '/admin' : 'user')
+                setrdval(
+                    users[findUser].isAdmin
+                        ? '/DD-User-management/admin'
+                        : '/DD-User-management/user',
+                )
             } else alert('blocked user')
         } else {
             alert('No user found')
