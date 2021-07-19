@@ -75,7 +75,7 @@ const Home = () => {
                             label: details.chart_label,
                             data:
                                 details.chart_type !== 'bubble'
-                                    ? [13, 15, 51, 53]
+                                    ? details.data
                                     : [
                                           {
                                               x: 20,
@@ -144,6 +144,7 @@ const Home = () => {
             chart_label: tar.chart_label.value,
             chart_type: tar.chart_type.value,
             data_source: tar.data_source.value,
+            data: [13, 15, 51, 53],
         }
         seteditvals('')
         chartDraw(editlist)

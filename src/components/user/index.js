@@ -3,6 +3,8 @@ import Navbar from '../sidebar'
 import { Container } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import Chart from 'chart.js/auto'
+import Xls from '../exportXls'
+import Pdf from '../exportPdf'
 import '../admin/index.scss'
 
 const User = () => {
@@ -17,7 +19,7 @@ const User = () => {
                 datasets: [
                     {
                         label: details.chart_label,
-                        data: [13, 15, 51, 53],
+                        data: details.data,
                         backgroundColor: ['rgba(255, 99, 132, 0.2)'],
                         borderColor: [
                             'rgba(255, 99, 132, 1)',
@@ -63,6 +65,8 @@ const User = () => {
                         </div>
                     ))}
                 </div>
+                <Xls />
+                <Pdf />
             </Container>
         </>
     )
