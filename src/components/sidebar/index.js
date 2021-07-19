@@ -12,17 +12,17 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import HomeIcon from '@material-ui/icons/Home'
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import MailIcon from '@material-ui/icons/Mail'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import { logout } from '../../actions'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 const drawerWidth = 240
 
@@ -207,34 +207,19 @@ export default function MiniDrawer() {
                             </div>
                             <Divider />
                             <List>
-                                {[
-                                    'Inbox',
-                                    'Starred',
-                                    'Send email',
-                                    'Drafts',
-                                ].map((text, index) => (
-                                    <ListItem button key={text}>
-                                        <ListItemIcon>
-                                            {index % 2 === 0 ? (
-                                                <InboxIcon />
-                                            ) : (
-                                                <MailIcon />
-                                            )}
-                                        </ListItemIcon>
-                                        <ListItemText primary={text} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                            <Divider />
-                            <List>
-                                {['All mail', 'Trash', 'Spam'].map(
+                                {['Home', 'User Management'].map(
                                     (text, index) => (
                                         <ListItem button key={text}>
                                             <ListItemIcon>
                                                 {index % 2 === 0 ? (
-                                                    <InboxIcon />
+                                                    <Link to="/admin">
+                                                        <HomeIcon />
+                                                    </Link>
                                                 ) : (
-                                                    <MailIcon />
+                                                    <Link to="/">
+                                                        {' '}
+                                                        <VerifiedUserIcon />{' '}
+                                                    </Link>
                                                 )}
                                             </ListItemIcon>
                                             <ListItemText primary={text} />
@@ -242,6 +227,7 @@ export default function MiniDrawer() {
                                     ),
                                 )}
                             </List>
+                            <Divider />
                         </Drawer>
                     )}
                 </div>

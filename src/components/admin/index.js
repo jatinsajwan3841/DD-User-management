@@ -8,6 +8,8 @@ import {
     Fab,
 } from '@material-ui/core'
 import PostAddIcon from '@material-ui/icons/PostAdd'
+import EditIcon from '@material-ui/icons/Edit'
+import DeleteIcon from '@material-ui/icons/Delete'
 import {
     Dialog,
     DialogActions,
@@ -20,7 +22,7 @@ import {
     InputLabel,
 } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { addData, editData } from '../../actions'
+import { addData, deleteData, editData } from '../../actions'
 import Chart from 'chart.js/auto'
 import './index.scss'
 
@@ -33,66 +35,96 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Admin = () => {
-    const [id, setid] = React.useState(2)
+    const dataList = useSelector((state) => state.data)
     const [editvals, seteditvals] = React.useState('')
     const [open, setOpen] = React.useState(false)
     const [open1, setOpen1] = React.useState(false)
 
     const chartRefs = React.useRef([])
+    const id = React.useRef(dataList[dataList.length - 1].id + 1)
+    const charts = React.useRef([])
 
     const dispatch = useDispatch()
     const classes = useStyles()
-    const dataList = useSelector((state) => state.data)
 
     const submit = async (e) => {
         e.preventDefault()
         await setOpen(false)
         const tar = e.target
         const details = {
-            id: id,
+            id: id.current,
             chart_label: tar.chart_label.value,
             chart_type: tar.chart_type.value,
             data_source: tar.data_source.value,
         }
         await dispatch(addData(details))
-        await setid(id + 1)
-        await chartDraw(details)
+        id.current++
+        chartDraw(details)
     }
 
-    const chartDraw = async (details) => {
-        new Chart(chartRefs.current[details.id].getContext('2d'), {
-            type: details.chart_type,
-            data: {
-                labels: [1, 2, 3, 4],
-                datasets: [
-                    {
-                        label: details.chart_label,
-                        data: [13, 15, 51, 53],
-                        backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                        ],
-                        borderWidth: 1,
-                    },
-                ],
-            },
-            options: {
-                scales: {
-                    yAxes: [
+    const chartDraw = (details) => {
+        charts.current[details.id] !== undefined &&
+            charts.current[details.id].destroy()
+        charts.current[details.id] = new Chart(
+            chartRefs.current[details.id].getContext('2d'),
+            {
+                type: details.chart_type,
+                data: {
+                    labels: [1, 2, 3, 4],
+                    datasets: [
                         {
-                            ticks: {
-                                beginAtZero: true,
-                            },
+                            label: details.chart_label,
+                            data:
+                                details.chart_type !== 'bubble'
+                                    ? [13, 15, 51, 53]
+                                    : [
+                                          {
+                                              x: 20,
+                                              y: 30,
+                                              r: 5,
+                                          },
+                                          {
+                                              x: 30,
+                                              y: 10,
+                                              r: 10,
+                                          },
+                                          {
+                                              x: 40,
+                                              y: 20,
+                                              r: 8,
+                                          },
+                                          {
+                                              x: 50,
+                                              y: 25,
+                                              r: 14,
+                                          },
+                                      ],
+                            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                            ],
+                            borderWidth: 1,
                         },
                     ],
                 },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true,
+                                },
+                            },
+                        ],
+                    },
+                },
             },
-        })
+        )
     }
 
     const handleClickOpen = () => {
@@ -110,13 +142,12 @@ const Admin = () => {
         const tar = e.target
         const editlist = {
             id: parseInt(tar.id.value),
-            dname: tar.name.value,
-            dcarb: tar.carb.value,
-            dprot: tar.prot.value,
-            dfat: tar.fat.value,
-            dcal: 4 * tar.carb.value + 4 * tar.prot.value + 9 * tar.fat.value,
+            chart_label: tar.chart_label.value,
+            chart_type: tar.chart_type.value,
+            data_source: tar.data_source.value,
         }
         seteditvals('')
+        chartDraw(editlist)
         dispatch(editData(editlist))
     }
 
@@ -227,7 +258,7 @@ const Admin = () => {
                     </form>
                 </Dialog>
 
-                {editvals !== '' ? (
+                {editvals !== '' && (
                     <Dialog
                         open={open1}
                         onClose={handleClose}
@@ -329,13 +360,23 @@ const Admin = () => {
                             </DialogActions>
                         </form>
                     </Dialog>
-                ) : null}
+                )}
 
                 <div className="content">
                     {dataList.map((v, i) => (
                         <div key={i} className="chart-holder resizable">
                             <canvas
                                 ref={(el) => (chartRefs.current[v.id] = el)}
+                            />
+                            <EditIcon
+                                color="primary"
+                                size="small"
+                                onClick={() => tempvals(v.id)}
+                            />
+                            <DeleteIcon
+                                color="secondary"
+                                size="small"
+                                onClick={() => dispatch(deleteData(v.id))}
                             />
                         </div>
                     ))}

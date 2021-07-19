@@ -17,11 +17,10 @@ const data = (state = initialState, action) => {
     switch (action.type) {
         case 'addData':
             return [...state, action.payload]
-        case 'editdish':
+        case 'editData':
             const element = state.findIndex(
-                (elem) => elem.id == action.payload.id,
+                (elem) => elem.id === action.payload.id,
             )
-            //edit that element
             state[element] = action.payload
             return state
         case 'deleteData':

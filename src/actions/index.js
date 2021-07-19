@@ -11,17 +11,17 @@ export const logout = () => {
     }
 }
 
-export const addData = (dish) => {
+export const addData = (data) => {
     return {
         type: 'addData',
-        payload: dish,
+        payload: data,
     }
 }
 
-export const editData = (dish) => {
+export const editData = (data) => {
     return {
         type: 'editData',
-        payload: dish,
+        payload: data,
     }
 }
 

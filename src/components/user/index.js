@@ -1,7 +1,9 @@
 import React from 'react'
 import Navbar from '../sidebar'
+import { Container } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import Chart from 'chart.js/auto'
+import '../admin/index.scss'
 
 const User = () => {
     const dataList = useSelector((state) => state.data)
@@ -51,13 +53,17 @@ const User = () => {
     return (
         <>
             <Navbar />
-            <div className="content">
-                {dataList.map((v, i) => (
-                    <div key={i} className="chart-holder">
-                        <canvas ref={(el) => (chartRefs.current[v.id] = el)} />
-                    </div>
-                ))}
-            </div>
+            <Container style={{ paddingLeft: '73px' }}>
+                <div className="content">
+                    {dataList.map((v, i) => (
+                        <div key={i} className="chart-holder">
+                            <canvas
+                                ref={(el) => (chartRefs.current[v.id] = el)}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </Container>
         </>
     )
 }
