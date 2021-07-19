@@ -62,6 +62,16 @@ const Login = () => {
                 </Button>
             </form>
             {rdval !== '' ? <Redirect to={rdval} /> : null}
+            <p>
+                * For admin login Enter name as admin and any password.
+                <br />* Admin page have two sidebar buttons for adding charts
+                for visualization and user management.
+                <br />* For user login enter name other than admin and which is
+                already in user management visible in admin panel, pre included
+                example of name is Nyal.
+                <br />* If user is blocked from admin panel, alert will show
+                about the blocked or if user not found.
+            </p>
         </Container>
     )
 }

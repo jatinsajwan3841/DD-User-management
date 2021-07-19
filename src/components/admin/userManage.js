@@ -7,6 +7,8 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    makeStyles,
+    Fab,
 } from '@material-ui/core'
 import {
     Dialog,
@@ -25,18 +27,45 @@ import PostAddIcon from '@material-ui/icons/PostAdd'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { useSelector, useDispatch } from 'react-redux'
-import { editUser, deleteUser } from '../../actions'
+import { addUser, editUser, deleteUser } from '../../actions'
+
+const useStyles = makeStyles((theme) => ({
+    fab: {
+        position: 'fixed',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+    },
+}))
 
 const UserManage = () => {
     const [userEdit, setUserEdit] = React.useState(false)
+    const [open, setOpen] = React.useState(false)
     const [tempVals, setTempVals] = React.useState('')
     const dispatch = useDispatch()
     const users = useSelector((state) => state.users)
+    const id = React.useRef(users[users.length - 1].id + 1)
+
+    const classes = useStyles()
 
     const tempHolder = (tid) => {
         setUserEdit(true)
         const element = users.findIndex((elem) => elem.id === tid)
         setTempVals(users[element])
+    }
+
+    const submit = async (e) => {
+        e.preventDefault()
+        await setOpen(false)
+        const tar = e.target
+        const details = {
+            id: id.current,
+            name: tar.name.value,
+            role: tar.role.value,
+            isAdmin: tar.permissions.value === 'All' && true,
+            permissions: tar.permissions.value,
+        }
+        await dispatch(addUser(details))
+        id.current++
     }
 
     const handleUserEdit = (e) => {
@@ -56,6 +85,14 @@ const UserManage = () => {
 
     return (
         <>
+            <Fab
+                color="secondary"
+                aria-label="add"
+                className={classes.fab}
+                onClick={() => setOpen(true)}
+            >
+                <PostAddIcon />
+            </Fab>
             <TableContainer
                 component={Container}
                 style={{ paddingLeft: '73px' }}
@@ -120,6 +157,73 @@ const UserManage = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Dialog
+                open={open}
+                onClose={() => setOpen(false)}
+                aria-labelledby="form-dialog-title"
+            >
+                <form onSubmit={submit}>
+                    <DialogTitle id="form-dialog-title">
+                        Add new User
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Please enter the details below:
+                        </DialogContentText>
+
+                        <TextField
+                            required
+                            fullWidth
+                            name="name"
+                            label="name"
+                            helperText="Please enter Name"
+                        />
+                        <FormControl style={{ width: '150px' }}>
+                            <InputLabel id="role">Role</InputLabel>
+                            <Select labelId="role" name="role" required>
+                                <MenuItem value="admin">admin</MenuItem>
+                                <MenuItem value="account manager">
+                                    account manager
+                                </MenuItem>
+                                <MenuItem value="client">client</MenuItem>
+                                <MenuItem value="blocked">blocked</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl
+                            style={{
+                                marginLeft: '15px',
+                                width: '150px',
+                            }}
+                        >
+                            <InputLabel id="permissions">
+                                Permissions
+                            </InputLabel>
+                            <Select labelId="permissions" name="permissions">
+                                <MenuItem value="All">All</MenuItem>
+                                <MenuItem value="Read">Read</MenuItem>
+                                <MenuItem value="Write">Write</MenuItem>
+                                <MenuItem value="Read/Write">
+                                    Read/Write
+                                </MenuItem>
+                                <MenuItem value="None">None</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => setOpen(false)} color="primary">
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            startIcon={<PostAddIcon />}
+                            type="submit"
+                        >
+                            Add
+                        </Button>
+                    </DialogActions>
+                </form>
+            </Dialog>
 
             {tempVals !== '' && (
                 <Dialog
