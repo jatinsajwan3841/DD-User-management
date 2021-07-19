@@ -235,7 +235,7 @@ export default function Navbar({ setPresentPage }) {
                     )}
                 </div>
             ) : (
-                <Redirect to="/" />
+                <Redirect to="/DD-User-management/" />
             )}
         </>
     )
