@@ -5,31 +5,32 @@ import Button from '@material-ui/core/Button'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import SendIcon from '@material-ui/icons/Send'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../actions'
 import { Redirect } from 'react-router-dom'
 
 const Login = () => {
-    const [isAdmin, setisAdmin] = React.useState(false)
     const [rdval, setrdval] = React.useState('')
 
     const dispatch = useDispatch()
-
-    const handleChange = () => setisAdmin(!isAdmin)
+    const users = useSelector((state) => state.users)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (isAdmin) {
-            if (
-                e.target.name.value === 'admin' &&
-                e.target.pass.value === 'admin'
-            ) {
-                dispatch(login({ name: 'admin', isAdmin: isAdmin }))
-                setrdval('/admin')
-            } else setrdval('/404')
+        let tempName = e.target.name.value
+        let findUser = users.findIndex((elem) => elem.name === tempName)
+        if (findUser !== -1) {
+            if (users[findUser].role !== 'blocked') {
+                dispatch(
+                    login({
+                        name: users[findUser].name,
+                        isAdmin: users[findUser].isAdmin,
+                    }),
+                )
+                setrdval(users[findUser].isAdmin ? '/admin' : 'user')
+            } else alert('blocked user')
         } else {
-            dispatch(login({ name: e.target.name.value, isAdmin: isAdmin }))
-            setrdval('/user')
+            alert('No user found')
         }
     }
 
@@ -50,16 +51,6 @@ const Login = () => {
                     name="pass"
                     label="Password"
                     helperText="Please enter your password"
-                />
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={isAdmin}
-                            onChange={handleChange}
-                            name="Admin"
-                        />
-                    }
-                    label="Admin ?"
                 />
                 <Button
                     type="submit"

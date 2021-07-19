@@ -35,6 +35,7 @@ store.subscribe(() => {
     saveState({
         logstate: store.getState().logstate,
         data: store.getState().data,
+        users: store.getState().users,
     })
 })
 

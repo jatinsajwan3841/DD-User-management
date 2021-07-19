@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import data from './data'
 import logstate from './logstate'
-
-const rootReducer = combineReducers({ logstate, data })
+import users from './users'
+const rootReducer = combineReducers({ users, logstate, data })
 
 export default rootReducer

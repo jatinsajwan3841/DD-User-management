@@ -22,7 +22,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import { logout } from '../../actions'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const drawerWidth = 240
 
@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function MiniDrawer() {
+export default function Navbar({ setPresentPage }) {
     const classes = useStyles()
     const theme = useTheme()
     const [open, setOpen] = React.useState(false)
@@ -209,17 +209,20 @@ export default function MiniDrawer() {
                             <List>
                                 {['Home', 'User Management'].map(
                                     (text, index) => (
-                                        <ListItem button key={text}>
+                                        <ListItem
+                                            button
+                                            key={text}
+                                            onClick={() =>
+                                                index % 2 === 0
+                                                    ? setPresentPage('Home')
+                                                    : setPresentPage('uManage')
+                                            }
+                                        >
                                             <ListItemIcon>
-                                                {index % 2 === 0 ? (
-                                                    <Link to="/admin">
-                                                        <HomeIcon />
-                                                    </Link>
+                                                {index === 0 ? (
+                                                    <HomeIcon />
                                                 ) : (
-                                                    <Link to="/">
-                                                        {' '}
-                                                        <VerifiedUserIcon />{' '}
-                                                    </Link>
+                                                    <VerifiedUserIcon />
                                                 )}
                                             </ListItemIcon>
                                             <ListItemText primary={text} />

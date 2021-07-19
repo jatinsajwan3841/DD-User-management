@@ -11,6 +11,27 @@ export const logout = () => {
     }
 }
 
+export const addUser = (data) => {
+    return {
+        type: 'addUser',
+        payload: data,
+    }
+}
+
+export const editUser = (data) => {
+    return {
+        type: 'editUser',
+        payload: data,
+    }
+}
+
+export const deleteUser = (id) => {
+    return {
+        type: 'deleteUser',
+        payload: id,
+    }
+}
+
 export const addData = (data) => {
     return {
         type: 'addData',
