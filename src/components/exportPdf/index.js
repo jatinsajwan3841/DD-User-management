@@ -30,7 +30,7 @@ const ExportPdf = () => {
         </Document>
     )
 
-    const [instance, updateInstance] = usePDF({ document: MyDoc })
+    const [instance] = usePDF({ document: MyDoc })
     if (instance.loading) return <div>Loading ...</div>
 
     if (instance.error) return <div>Something went wrong: {instance.error}</div>
