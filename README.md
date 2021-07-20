@@ -8,4 +8,6 @@ Tried making a dynamic dashboard and user management with routing.
 
 -   user if is provided with admin rights in user management will be routed to admin page else to user page.
 
+⋅⋅\* Can export the data in excel or pdf files onClick of respective buttons.
+
 [Let's see it in action](https://jatinsajwan3841.github.io/DD-User-management/)
