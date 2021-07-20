@@ -57,6 +57,31 @@ const Home = () => {
             chart_label: tar.chart_label.value,
             chart_type: tar.chart_type.value,
             data_source: tar.data_source.value,
+            data:
+                tar.chart_type.value !== 'bubble'
+                    ? [13, 15, 51, 53]
+                    : [
+                          {
+                              x: 20,
+                              y: 30,
+                              r: 5,
+                          },
+                          {
+                              x: 30,
+                              y: 10,
+                              r: 10,
+                          },
+                          {
+                              x: 40,
+                              y: 20,
+                              r: 8,
+                          },
+                          {
+                              x: 50,
+                              y: 25,
+                              r: 14,
+                          },
+                      ],
         }
         await dispatch(addData(details))
         id.current++
@@ -75,31 +100,7 @@ const Home = () => {
                     datasets: [
                         {
                             label: details.chart_label,
-                            data:
-                                details.chart_type !== 'bubble'
-                                    ? details.data
-                                    : [
-                                          {
-                                              x: 20,
-                                              y: 30,
-                                              r: 5,
-                                          },
-                                          {
-                                              x: 30,
-                                              y: 10,
-                                              r: 10,
-                                          },
-                                          {
-                                              x: 40,
-                                              y: 20,
-                                              r: 8,
-                                          },
-                                          {
-                                              x: 50,
-                                              y: 25,
-                                              r: 14,
-                                          },
-                                      ],
+                            data: details.data,
                             backgroundColor: ['rgba(255, 99, 132, 0.2)'],
                             borderColor: [
                                 'rgba(255, 99, 132, 1)',
@@ -146,7 +147,31 @@ const Home = () => {
             chart_label: tar.chart_label.value,
             chart_type: tar.chart_type.value,
             data_source: tar.data_source.value,
-            data: [13, 15, 51, 53],
+            data:
+                tar.chart_type.value !== 'bubble'
+                    ? [13, 15, 51, 53]
+                    : [
+                          {
+                              x: 20,
+                              y: 30,
+                              r: 5,
+                          },
+                          {
+                              x: 30,
+                              y: 10,
+                              r: 10,
+                          },
+                          {
+                              x: 40,
+                              y: 20,
+                              r: 8,
+                          },
+                          {
+                              x: 50,
+                              y: 25,
+                              r: 14,
+                          },
+                      ],
         }
         seteditvals('')
         chartDraw(editlist)
