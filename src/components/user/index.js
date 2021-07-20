@@ -15,7 +15,20 @@ const User = () => {
         new Chart(chartRefs.current[details.id].getContext('2d'), {
             type: details.chart_type,
             data: {
-                labels: [1, 2, 3, 4],
+                labels: [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                    'July',
+                    'August',
+                    'September',
+                    'October',
+                    'November',
+                    'December',
+                ],
                 datasets: [
                     {
                         label: details.chart_label,

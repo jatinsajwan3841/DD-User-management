@@ -59,7 +59,7 @@ const Home = () => {
             data_source: tar.data_source.value,
             data:
                 tar.chart_type.value !== 'bubble'
-                    ? [13, 15, 51, 53]
+                    ? [13, 15, 51, 53, 34, 53, 23, 25, 54, 80, 50, 82]
                     : [
                           {
                               x: 20,
@@ -96,7 +96,20 @@ const Home = () => {
             {
                 type: details.chart_type,
                 data: {
-                    labels: [1, 2, 3, 4],
+                    labels: [
+                        'January',
+                        'February',
+                        'March',
+                        'April',
+                        'May',
+                        'June',
+                        'July',
+                        'August',
+                        'September',
+                        'October',
+                        'November',
+                        'December',
+                    ],
                     datasets: [
                         {
                             label: details.chart_label,
@@ -149,7 +162,7 @@ const Home = () => {
             data_source: tar.data_source.value,
             data:
                 tar.chart_type.value !== 'bubble'
-                    ? [13, 15, 51, 53]
+                    ? [13, 15, 51, 53, 34, 53, 23, 25, 54, 80, 50, 82]
                     : [
                           {
                               x: 20,
