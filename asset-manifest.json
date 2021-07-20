@@ -9,13 +9,13 @@
     "main.css": "/DD-User-management/static/css/main.50e3d008.chunk.css",
     "main.js": "/DD-User-management/static/js/main.27244898.chunk.js",
     "main.js.map": "/DD-User-management/static/js/main.27244898.chunk.js.map",
-    "runtime-main.js": "/DD-User-management/static/js/runtime-main.33457e6a.js",
-    "runtime-main.js.map": "/DD-User-management/static/js/runtime-main.33457e6a.js.map",
+    "runtime-main.js": "/DD-User-management/static/js/runtime-main.4e81cb0a.js",
+    "runtime-main.js.map": "/DD-User-management/static/js/runtime-main.4e81cb0a.js.map",
     "static/js/5.6f17c877.chunk.js": "/DD-User-management/static/js/5.6f17c877.chunk.js",
     "static/js/5.6f17c877.chunk.js.map": "/DD-User-management/static/js/5.6f17c877.chunk.js.map",
     "static/css/6.61acf97b.chunk.css": "/DD-User-management/static/css/6.61acf97b.chunk.css",
-    "static/js/6.e3ad764b.chunk.js": "/DD-User-management/static/js/6.e3ad764b.chunk.js",
-    "static/js/6.e3ad764b.chunk.js.map": "/DD-User-management/static/js/6.e3ad764b.chunk.js.map",
+    "static/js/6.1db93141.chunk.js": "/DD-User-management/static/js/6.1db93141.chunk.js",
+    "static/js/6.1db93141.chunk.js.map": "/DD-User-management/static/js/6.1db93141.chunk.js.map",
     "static/css/7.61acf97b.chunk.css": "/DD-User-management/static/css/7.61acf97b.chunk.css",
     "static/js/7.4acc643a.chunk.js": "/DD-User-management/static/js/7.4acc643a.chunk.js",
     "static/js/7.4acc643a.chunk.js.map": "/DD-User-management/static/js/7.4acc643a.chunk.js.map",
@@ -34,7 +34,7 @@
     "static/js/5.6f17c877.chunk.js.LICENSE.txt": "/DD-User-management/static/js/5.6f17c877.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.33457e6a.js",
+    "static/js/runtime-main.4e81cb0a.js",
     "static/js/5.6f17c877.chunk.js",
     "static/css/main.50e3d008.chunk.css",
     "static/js/main.27244898.chunk.js"
