@@ -96,20 +96,23 @@ const Home = () => {
             {
                 type: details.chart_type,
                 data: {
-                    labels: [
-                        'January',
-                        'February',
-                        'March',
-                        'April',
-                        'May',
-                        'June',
-                        'July',
-                        'August',
-                        'September',
-                        'October',
-                        'November',
-                        'December',
-                    ],
+                    labels:
+                        details.chart_type !== 'scatter'
+                            ? [
+                                  'January',
+                                  'February',
+                                  'March',
+                                  'April',
+                                  'May',
+                                  'June',
+                                  'July',
+                                  'August',
+                                  'September',
+                                  'October',
+                                  'November',
+                                  'December',
+                              ]
+                            : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                     datasets: [
                         {
                             label: details.chart_label,
@@ -204,7 +207,7 @@ const Home = () => {
     }, [])
 
     return (
-        <Container style={{ paddingLeft: '73px' }}>
+        <Container className="admin-left">
             <Fab
                 color="secondary"
                 aria-label="add"

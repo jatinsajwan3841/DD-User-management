@@ -10,9 +10,7 @@ const ExportXls = () => {
     const dataList = useSelector((state) => state.data)
     return (
         <ExcelFile
-            element={
-                <button style={{ marginRight: '10px' }}>Export to Xlsx</button>
-            }
+            element={<button style={{ margin: '15px' }}>Export to Xlsx</button>}
         >
             <ExcelSheet data={dataList} name="Data">
                 <ExcelColumn label="id" value="id" />

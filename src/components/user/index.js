@@ -68,7 +68,7 @@ const User = () => {
     return (
         <>
             <Navbar />
-            <Container style={{ paddingLeft: '73px' }}>
+            <Container>
                 <div className="content">
                     {dataList.map((v, i) => (
                         <div key={i} className="chart-holder">

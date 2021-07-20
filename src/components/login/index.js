@@ -12,6 +12,7 @@ const Login = () => {
 
     const dispatch = useDispatch()
     const users = useSelector((state) => state.users)
+    const logstate = useSelector((state) => state.logstate)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -35,6 +36,13 @@ const Login = () => {
             alert('No user found')
         }
     }
+
+    React.useEffect(() => {
+        logstate !== null &&
+            (logstate.isAdmin
+                ? setrdval('/DD-User-management/admin')
+                : setrdval('/DD-User-management/user'))
+    }, [])
 
     return (
         <Container maxWidth="sm">
@@ -63,7 +71,7 @@ const Login = () => {
                     Login
                 </Button>
             </form>
-            {rdval !== '' ? <Redirect to={rdval} /> : null}
+            {rdval !== '' && <Redirect to={rdval} />}
             <p>
                 * For admin login Enter name as admin and any password.
                 <br />* Admin page have two sidebar buttons for adding charts

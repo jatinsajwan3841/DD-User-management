@@ -93,10 +93,7 @@ const UserManage = () => {
             >
                 <PostAddIcon />
             </Fab>
-            <TableContainer
-                component={Container}
-                style={{ paddingLeft: '73px' }}
-            >
+            <TableContainer component={Container} className="admin-left">
                 <Table size="small" stickyHeader={true}>
                     <TableHead>
                         <TableRow>
